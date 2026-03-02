@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skill Roadmap - JobBridge</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f8fc;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #1a73e8;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .container {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card h3 {
+      color: #1a73e8;
+      margin-bottom: 10px;
+    }
+
+    .roadmap {
+      margin-top: 10px;
+      padding-left: 15px;
+      display: none;
+    }
+
+    .roadmap li {
+      margin-bottom: 6px;
+    }
+
+    footer {
+      text-align: center;
+      background: #1a1a1a;
+      color: #ccc;
+      padding: 20px;
+      font-size: 14px;
+    }
+    a.back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #1a73e8;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+
+    a.back-btn:hover {
+      background-color: #155cc3;
+    }
+    
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Choose Your Career Path</h1>
+    <p>Click a role to see what skills you need to master</p>
+  </header>
+
+  <div class="container">
+    <div class="grid">
+      <div class="card" onclick="toggleRoadmap(this)">
+<h3> Software Development Track</h3>
+<ul class="roadmap">
+  <li>Learn Programming Languages: C → C++ → Java or Python</li>
+  <li>Master Data Structures & Algorithms</li>
+  <li>Learn Git, GitHub for version control</li>
+  <li>Build mini projects: Number game, Chat app, Expense tracker</li>
+  <li>Learn frameworks: Spring Boot (Java) / Django (Python)</li>
+</ul
+</div>
+      <div class="card" onclick="toggleRoadmap(this)">
+        <h3>Frontend Developer</h3>
+        <ul class="roadmap">
+          <li>HTML, CSS, JavaScript</li>
+          <li>Responsive Design (Flexbox/Grid)</li>
+          <li>React.js / Vue.js</li>
+          <li>Version Control (Git & GitHub)</li>
+          <li>APIs & JSON</li>
+        </ul>
+      </div>
+
+      <div class="card" onclick="toggleRoadmap(this)">
+        <h3>Backend Developer</h3>
+        <ul class="roadmap">
+          <li>Node.js / Java / Python</li>
+          <li>Database (MySQL / MongoDB)</li>
+          <li>RESTful APIs</li>
+          <li>Authentication</li>
+          <li>Deployment</li>
+        </ul>
+      </div>
+
+      <div class="card" onclick="toggleRoadmap(this)">
+        <h3>QA Tester</h3>
+        <ul class="roadmap">
+          <li>Manual Testing Basics</li>
+          <li>Bug Tracking Tools</li>
+          <li>Automation with Selenium</li>
+          <li>Testing Life Cycle</li>
+          <li>Agile & Jira</li>
+        </ul>
+      </div>
+
+      <div class="card" onclick="toggleRoadmap(this)">
+        <h3>Data Analyst</h3>
+        <ul class="roadmap">
+          <li>Excel / Sheets</li>
+          <li>SQL</li>
+          <li>Python + Pandas</li>
+          <li>Data Visualization (Tableau / PowerBI)</li>
+          <li>Basic Statistics</li>
+          
+        </ul>
+      </div>
+    <div class="card" onclick="toggleRoadmap(this)">
+   <h3> Data Science & AI/ML</h3>
+<ul class="roadmap">
+  <li>Python must: NumPy, Pandas, Matplotlib</li>
+  <li>Learn Data Analysis & Data Cleaning</li>
+  <li>Understand ML Algorithms: Linear Regression, KNN, SVM</li>
+  <li>Do mini projects: Spam Detection, House Price Prediction</li>
+  <li>Use Jupyter, Colab, Scikit-learn, TensorFlow</li>
+</ul>
+</div>
+
+<div class="card" onclick="toggleRoadmap(this)">
+   <h3> Cybersecurity (Ethical Hacking)</h3>
+<ul class="roadmap">
+  <li>Learn Computer Networks, Linux basics</li>
+  <li>Tools: Nmap, Wireshark, Burp Suite</li>
+  <li>Understand OWASP Top 10 vulnerabilities</li>
+  <li>Learn Python for writing basic security scripts</li>
+  <li>Join CTFs (Capture The Flag) competitions</li>
+</ul>
+</div>
+<div class="card" onclick="toggleRoadmap(this)">
+<h3> Cloud & DevOps</h3>
+<ul class="roadmap">
+  <li>Start with Linux and shell scripting</li>
+  <li>Learn AWS / Azure basics (EC2, S3, IAM)</li>
+  <li>Docker & Kubernetes essentials</li>
+  <li>CI/CD: Jenkins or GitHub Actions</li>
+  <li>Build a pipeline: Code → Test → Deploy</li>
+</ul>
+</div>
+<div class="card" onclick="toggleRoadmap(this)" > 
+<h3>UI/UX Design</h3>
+<ul class="roadmap">
+  <li>Learn design principles: Contrast, Spacing, Typography</li>
+  <li>Tools: Figma, Adobe XD</li>
+  <li>Create wireframes and user flows</li>
+  <li>Convert designs to frontend using HTML/CSS</li>
+  <li>Build a portfolio of your designs</li>
+</ul>
+</div>
+   
+   
+    </div>
+    
+  </div>
+<a class="back-btn" href="dashboard.html">← Back to Home</a>
+  <footer>
+    © 2025 JobBridge | Skill Roadmap by Saikumar
+  </footer>
+
+  <script>
+    function toggleRoadmap(card) {
+      const roadmap = card.querySelector('.roadmap');
+      roadmap.style.display = roadmap.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+
+</body>
+</html>

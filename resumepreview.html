@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Resume Builder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      padding: 20px;
+    }
+    .form-container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .form-container input, .form-container textarea, .form-container select {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .btn {
+      margin-top: 10px;
+      padding: 12px 24px;
+      background: #3949ab;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+    .btn-download { background: #2e7d32; }
+    .btn:hover { opacity: 0.85; }
+
+    #action-buttons {
+      max-width: 1000px;
+      margin: 16px auto;
+      text-align: center;
+      display: none;
+    }
+
+    /* ── Resume Preview ── */
+    #resume-preview {
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 40px;
+      display: none;
+    }
+    .resume-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+    .resume-details { flex: 1; }
+    .resume-details h2 { margin: 0 0 8px; font-size: 26px; }
+    .resume-details p { margin: 3px 0; font-size: 14px; }
+    .profile-pic {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-left: 20px;
+      flex-shrink: 0;
+    }
+    .section { margin-bottom: 20px; }
+    .section h3 {
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    .section p, .section ul { font-size: 14px; margin: 0; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 5px; }
+
+    /* Themes */
+    .theme-classic { background: white !important; color: #111; }
+    .theme-classic .section h3 { color: #283593; border-color: #c5cae9; }
+
+    .theme-elegant { background: #fefefe !important; color: #2e2e2e; font-family: Georgia, serif; }
+    .theme-elegant .section h3 { color: #6a1b9a; border-color: #ce93d8; }
+
+    .theme-colorful { background: #e3f2fd !important; color: #0d47a1; }
+    .theme-colorful .section h3 { color: #ef6c00; border-color: #ffb74d; }
+
+    .theme-dark { background: #1a1a2e !important; color: #ecf0f1; }
+    .theme-dark .section h3 { color: #00e676; border-color: #00c853; }
+
+    .theme-modern-blue { background: #e8f4fd !important; color: #0d47a1; }
+    .theme-modern-blue .section h3 { color: #1565c0; border-color: #90caf9; }
+
+    .theme-professional-grey { background: #f5f5f5 !important; color: #424242; }
+    .theme-professional-grey .section h3 { color: #212121; border-color: #bdbdbd; }
+
+    a.back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #1a73e8;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+
+    /* ── Print styles: only resume shows ── */
+    @media print {
+      body * { visibility: hidden; }
+      #resume-preview, #resume-preview * { visibility: visible; }
+      #resume-preview {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%;
+        margin: 0;
+        padding: 30px;
+        box-shadow: none;
+        border-radius: 0;
+        display: block !important;
+      }
+      /* Force theme backgrounds to print */
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2><u>Enter Resume Details</u></h2>
+    <input type="text" id="name" placeholder="Your Name">
+    <input type="text" id="address" placeholder="Your Address">
+    <input type="email" id="email" placeholder="Your Email">
+    <input type="text" id="phone" placeholder="Your Phone">
+    <input type="text" id="linkedin" placeholder="LinkedIn Profile">
+    <input type="text" id="github" placeholder="GitHub URL">
+    <input type="file" id="photo" accept="image/*">
+    <textarea id="objective" rows="3" placeholder="Career Objective"></textarea>
+    <textarea id="education" rows="3" placeholder="Education (one per line)"></textarea>
+    <textarea id="skills" rows="3" placeholder="Skills (one per line)"></textarea>
+    <textarea id="projects" rows="3" placeholder="Projects (one per line)"></textarea>
+    <textarea id="internship" rows="2" placeholder="Internship Details"></textarea>
+    <textarea id="strengths" rows="2" placeholder="Key Strengths (one per line)"></textarea>
+    <textarea id="languages" rows="2" placeholder="Languages Known (one per line)"></textarea>
+    <textarea id="declaration" rows="2" placeholder="Declaration"></textarea>
+
+    <label for="theme"><strong>Choose a Theme:</strong></label>
+    <select id="theme">
+      <option value="classic">Classic</option>
+      <option value="elegant">Elegant</option>
+      <option value="colorful">Colorful</option>
+      <option value="dark">Dark</option>
+      <option value="modern-blue">Modern Blue</option>
+      <option value="professional-grey">Professional Grey</option>
+    </select>
+
+    <br/>
+    <button class="btn" onclick="generatePreview()">👁️ Preview Resume</button>
+  </div>
+
+  <!-- Action buttons appear after preview -->
+  <div id="action-buttons">
+    <button class="btn btn-download" onclick="downloadResume()">⬇️ Download as PDF</button>
+    <button class="btn" onclick="generatePreview()">🔄 Refresh Preview</button>
+  </div>
+
+  <!-- Resume Preview -->
+  <div id="resume-preview">
+    <div class="resume-header">
+      <div class="resume-details">
+        <h2 id="prev-name"></h2>
+        <p id="prev-address"></p>
+        <p id="prev-email"></p>
+        <p id="prev-phone"></p>
+        <p id="prev-linkedin"></p>
+        <p id="prev-github"></p>
+      </div>
+      <img id="photo-preview" class="profile-pic" src="" alt="" style="display:none;">
+    </div>
+
+    <div class="section"><h3>Career Objective</h3><p id="prev-objective"></p></div>
+    <div class="section"><h3>Education</h3><ul id="prev-education"></ul></div>
+    <div class="section"><h3>Skills</h3><ul id="prev-skills"></ul></div>
+    <div class="section"><h3>Projects</h3><ul id="prev-projects"></ul></div>
+    <div class="section"><h3>Internship</h3><p id="prev-internship"></p></div>
+    <div class="section"><h3>Key Strengths</h3><ul id="prev-strengths"></ul></div>
+    <div class="section"><h3>Languages Known</h3><ul id="prev-languages"></ul></div>
+    <div class="section"><h3>Declaration</h3><p id="prev-declaration"></p></div>
+  </div>
+
+  <div style="max-width:1000px;margin:auto;">
+    <a class="back-btn" href="dashboard.html">← Back to Home</a>
+  </div>
+
+  <script>
+    function applyTheme() {
+      const preview = document.getElementById('resume-preview');
+      // Remove all theme classes
+      preview.className = '';
+      const selected = document.getElementById('theme').value;
+      preview.classList.add('theme-' + selected);
+    }
+
+    function generatePreview() {
+      // Text fields
+      document.getElementById('prev-name').textContent        = document.getElementById('name').value;
+      document.getElementById('prev-address').textContent     = document.getElementById('address').value;
+      document.getElementById('prev-email').textContent       = document.getElementById('email').value;
+      document.getElementById('prev-phone').textContent       = document.getElementById('phone').value;
+      document.getElementById('prev-linkedin').textContent    = document.getElementById('linkedin').value;
+      document.getElementById('prev-github').textContent      = document.getElementById('github').value;
+      document.getElementById('prev-objective').textContent   = document.getElementById('objective').value;
+      document.getElementById('prev-internship').textContent  = document.getElementById('internship').value;
+      document.getElementById('prev-declaration').textContent = document.getElementById('declaration').value;
+
+      // Photo
+      const file = document.getElementById('photo').files[0];
+      const imgEl = document.getElementById('photo-preview');
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          imgEl.src = e.target.result;
+          imgEl.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        imgEl.style.display = 'none';
+      }
+
+      // List sections
+      [
+        ['education', 'prev-education'],
+        ['skills',    'prev-skills'],
+        ['projects',  'prev-projects'],
+        ['strengths', 'prev-strengths'],
+        ['languages', 'prev-languages'],
+      ].forEach(([inputId, listId]) => {
+        const list = document.getElementById(listId);
+        list.innerHTML = document.getElementById(inputId).value
+          .split('\n')
+          .filter(l => l.trim())
+          .map(l => `<li>${l.trim()}</li>`)
+          .join('');
+      });
+
+      applyTheme();
+
+      const preview = document.getElementById('resume-preview');
+      preview.style.display = 'block';
+      document.getElementById('action-buttons').style.display = 'block';
+      preview.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function downloadResume() {
+      // Trigger browser print dialog — user selects "Save as PDF"
+      window.print();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mock Interview Quiz</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f1f4ff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #1a73e8;
+    }
+
+    .question {
+      margin: 20px 0;
+    }
+
+    .question h3 {
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin: 5px 0;
+    }
+
+    .btn {
+      margin-top: 20px;
+      background-color: #1a73e8;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    
+    }
+
+    .btn:hover {
+      background-color: #0c5acc;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+      color: green;
+    }
+
+    a.back-btn {
+      display: block;
+      margin-top: 30px;
+      text-align: center;
+      color: #1a73e8;
+      text-decoration: none;
+    }
+      a.back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #1a73e8;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+
+    a.back-btn:hover {
+      background-color: #155cc3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Mock Interview Quiz</h1>
+    <form id="quizForm">
+
+      <div class="question">
+        <h3>1. What does OOP stand for?</h3>
+        <label><input type="radio" name="q1" value="a" /> Object Oriented Programming</label>
+        <label><input type="radio" name="q1" value="b" /> Online Operational Process</label>
+        <label><input type="radio" name="q1" value="c" /> Output Ordered Page</label>
+      </div>
+
+      <div class="question">
+        <h3>2. Which of the following is not a programming language?</h3>
+        <label><input type="radio" name="q2" value="a" /> Python</label>
+        <label><input type="radio" name="q2" value="b" /> HTML</label>
+        <label><input type="radio" name="q2" value="c" /> Java</label>
+      </div>
+
+      <div class="question">
+        <h3>3. Which company developed Java?</h3>
+        <label><input type="radio" name="q3" value="a" /> Google</label>
+        <label><input type="radio" name="q3" value="b" /> Oracle</label>
+        <label><input type="radio" name="q3" value="c" /> Sun Microsystems</label>
+      </div>
+
+      <div class="question">
+        <h3>4. What is the full form of SQL?</h3>
+        <label><input type="radio" name="q4" value="a" /> Structured Query Language</label>
+        <label><input type="radio" name="q4" value="b" /> Simple Question List</label>
+        <label><input type="radio" name="q4" value="c" /> Server Query Log</label>
+      </div>
+
+      <div class="question">
+        <h3>5. Which of these is used for version control?</h3>
+        <label><input type="radio" name="q5" value="a" /> Git</label>
+        <label><input type="radio" name="q5" value="b" /> Firebase</label>
+        <label><input type="radio" name="q5" value="c" /> SQL</label>
+      </div>
+
+      <button type="button" class="btn" onclick="submitQuiz()">Submit</button>
+    </form>
+
+    <div class="result" id="result"></div>
+    <a class="back-btn" href="Mockinterview.html">← Back to Home</a>
+  </div>
+
+  <script>
+    function submitQuiz() {
+      const answers = {
+        q1: "a",
+        q2: "b",
+        q3: "c",
+        q4: "a",
+        q5: "a"
+      };
+
+      let score = 0;
+      for (let q in answers) {
+        const selected = document.querySelector(`input[name="${q}"]:checked`);
+        if (selected && selected.value === answers[q]) {
+          score++;
+        }
+      }
+
+      document.getElementById("result").textContent = `You scored ${score} out of 5`;
+    }
+  </script>
+
+</body>
+</html>
