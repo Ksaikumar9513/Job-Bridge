@@ -3,7 +3,7 @@
 A complete Career Development Platform designed to help users improve their skills, prepare for interviews, and track their progress — all in one place.
 
 🌐 Live Features
-
+Live Demo : https://ksaikumar9513.github.io/Job-Bridge/
 This project includes multiple modules to guide users through their career journey:
 
 📄 Pages Included
